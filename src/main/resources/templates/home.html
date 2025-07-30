@@ -8,7 +8,7 @@
             font-family: 'Segoe UI', sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('statics/images/software_logo.jpg'); /* 배경 이미지 추가 */
+            background-image: url('../static/images/software_logo.jpg'); /* 배경 이미지 추가 */
             background-repeat: no-repeat;
             background-size: 700px auto; /* 화면에 꽉 차게 */
             background-position: center;
@@ -132,7 +132,7 @@
             .then(data => {
               const ul = document.querySelector(".leaderboard ul");
               ul.innerHTML = data.map((item, i) =>
-                `<li><span>${i + 1}위</span> <span>${item.nickname}</span> <span>${item.clicks}</span></li>`
+                `<li><span>${i + 1}위</span> <span>${item.major}</span> <span>${item.clicks}</span></li>`
               ).join("");
             })
             .catch(err => console.error(err));

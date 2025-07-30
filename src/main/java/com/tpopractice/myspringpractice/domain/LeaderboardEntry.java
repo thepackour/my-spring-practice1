@@ -4,17 +4,13 @@ import lombok.Getter;
 
 @Getter
 public class LeaderboardEntry {
-    private String nickname;
+    private String major;
     private int clicks;
 
-    public LeaderboardEntry(String nickname, int clicks) {
-        this.nickname = nickname;
+    public LeaderboardEntry(String major, int clicks) {
+        this.major = major;
         this.clicks = clicks;
     }
-
-    public String getNickname() { return this.nickname; }
-
-    public int getClicks () { return this.clicks; }
 
     public void addClick() { this.clicks++; }
 }

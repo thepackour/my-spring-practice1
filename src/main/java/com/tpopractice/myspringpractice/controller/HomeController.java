@@ -5,6 +5,7 @@ import com.tpopractice.myspringpractice.service.LeaderboardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,4 +18,15 @@ public class HomeController {
         model.addAttribute("time", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         return "home";
     }
+
+    @PostMapping("/register")
+    public String signup() {
+        return "signUp";
+    }
+
+    @PostMapping("/login")
+    public String login() {
+        return "login";
+    }
+
 }
