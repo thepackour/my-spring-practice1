@@ -1,30 +1,36 @@
 package com.tpopractice.myspringpractice.service;
 
+import com.tpopractice.myspringpractice.domain.RegisterDto;
 import com.tpopractice.myspringpractice.domain.User;
-import com.tpopractice.myspringpractice.repository.JpaUserRepository;
 import com.tpopractice.myspringpractice.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService {
-    private final JpaUserRepository jpaUserRepository;
-    private UserRepository userRepository;
-    public UserService(UserRepository userRepository, JpaUserRepository jpaUserRepository) { this.userRepository = userRepository;
-        this.jpaUserRepository = jpaUserRepository;
-    }
+    private final UserRepository userRepository;
+    public UserService(UserRepository userRepository) { this.userRepository = userRepository; }
 
-    public User createUser(User user) {
-        return jpaUserRepository.save(user);
-    }
+    @Transactional
+    public User createUser(RegisterDto registerDto) {
+        User user = new User();
+        user.setUid(registerDto.getUsername());
+        user.setMajor(registerDto.getDepartment());
+        user.setPw(registerDto.getPassword()); // 해시 아직 안함
+        user.setCreated_at(new Timestamp(System.currentTimeMillis()));
 
-    public Optional<User> findByUid(String uid) {
-        return jpaUserRepository.findByUid(uid);
+        return userRepository.save(user);
     }
 
     public List<User> findAll() {
-        return jpaUserRepository.findAll();
+        return userRepository.findAll();
+    }
+
+    public Optional<User> findByUid(String uid) {
+        return userRepository.findByUid(uid);
     }
 }

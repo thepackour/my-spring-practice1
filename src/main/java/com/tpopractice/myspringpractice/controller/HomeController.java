@@ -19,11 +19,13 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/register")
     @PostMapping("/register")
     public String signup() {
         return "signUp";
     }
 
+    @GetMapping("/login")
     @PostMapping("/login")
     public String login() {
         return "login";
